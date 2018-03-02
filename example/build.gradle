@@ -24,4 +24,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation project(':hum-ec')
     annotationProcessor project(':hum-compiler')
+    implementation project(':hun-core')
 }

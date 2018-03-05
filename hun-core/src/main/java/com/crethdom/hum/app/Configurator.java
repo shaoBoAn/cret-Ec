@@ -1,5 +1,10 @@
 package com.crethdom.hum.app;
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.WeakHashMap;
 
 /**
@@ -8,7 +13,9 @@ import java.util.WeakHashMap;
 
 public class Configurator {
 
-    private static final WeakHashMap<String,Object> HUM_CONFIG = new WeakHashMap<>();
+    private static final HashMap<String,Object> HUM_CONFIG = new HashMap<>();
+
+    private static final ArrayList<IconFontDescriptor> ICON = new ArrayList<>();
 
     private Configurator(){
 
@@ -22,7 +29,7 @@ public class Configurator {
     }
 
     public final void configure(){
-
+        initIcons();
         HUM_CONFIG.put(ConfigType.CONFIG_READY.name(),true);
     }
 
@@ -31,7 +38,7 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    final WeakHashMap<String,Object> getHumConfigs(){
+    final HashMap<String,Object> getHumConfigs(){
 
         return HUM_CONFIG;
     }
@@ -41,6 +48,23 @@ public class Configurator {
         HUM_CONFIG.put(ConfigType.API_HOST.name(),host);
         return this;
 
+    }
+
+    private void initIcons(){
+
+        if(ICON.size()>0) {
+
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICON.get(0));
+            for(int i=1;i<ICON.size();i++){
+                initializer.with(ICON.get(i));
+            }
+        }
+    }
+
+    public final Configurator withIcons(IconFontDescriptor descriptor){
+
+        ICON.add(descriptor);
+        return this;
     }
 
     private void checkConfiguration(){

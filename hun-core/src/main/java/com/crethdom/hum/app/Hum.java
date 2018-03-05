@@ -2,6 +2,7 @@ package com.crethdom.hum.app;
 
 import android.content.Context;
 
+import java.util.HashMap;
 import java.util.WeakHashMap;
 
 /**
@@ -17,7 +18,7 @@ public final class Hum {
 
     }
 
-    private static WeakHashMap<String,Object> getConfigurations(){
+    private static HashMap<String,Object> getConfigurations(){
 
         return Configurator.getInstance().getHumConfigs();
     }
